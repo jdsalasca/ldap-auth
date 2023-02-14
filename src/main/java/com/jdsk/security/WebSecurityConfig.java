@@ -17,20 +17,7 @@ public class WebSecurityConfig {
 	@Autowired
 	LdapConfig ldapConfig;
 
-	   @Value("${ldap.urls}")
-	    private String ldapUrls;
-
-	    @Value("${ldap.base.dn}")
-	    private String ldapBaseDn;
-
-	    @Value("${ldap.username}")
-	    private String ldapSecurityPrincipal;
-
-	    @Value("${ldap.password}")
-	    private String ldapPrincipalPassword;
-
-	    @Value("${ldap.user.dn.pattern}")
-	    private String ldapUserDnPattern;
+	    
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -45,29 +32,17 @@ public class WebSecurityConfig {
       return http.getSharedObject(AuthenticationManagerBuilder.class)
               .build();
   }
-//  @Autowired
-//  public void configure(AuthenticationManagerBuilder auth) throws Exception {
-//    auth
-//      .ldapAuthentication()
-//      .userDnPatterns("ou=people")
-//        .groupSearchBase("ou=people")
-//        .contextSource()
-//          .url("ldap://localhost:10389/dc=example,dc=com")
-//          .managerDn("uid=admin,ou=system")
-//          .managerPassword("secret")
-//          .and()
-//        .passwordCompare()
-//          .passwordEncoder(new BCryptPasswordEncoder())
-//          .passwordAttribute("userPassword");
-//  }
-//
   @Autowired
   void configure(AuthenticationManagerBuilder auth) throws Exception {
       auth
               .ldapAuthentication().contextSource(ldapConfig.contextSource())
-              .userDnPatterns("ou=people,dc=example,dc=com");
-              //.userDnPatterns("uid={0}");
-    
+              .userDnPatterns("uid={0}");
+              
   }
+  //.userDnPatterns("ou=people,dc=example,dc=com");
+  //.userSearchFilter("uid=userName")
+  //.userSearchBase("uid={0},ou=people,dc=example,dc=com")
+  //.userSearchBase("ou=people,dc=example,dc=com")
+  //..userDnPatterns("uid={0},ou=people,dc=example,dc=com");
 
 }

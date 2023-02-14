@@ -11,10 +11,12 @@ import org.springframework.stereotype.Repository;
 import com.jdsk.entities.LdapUser;
 
 @Repository
-//public interface LdapUserRepository extends CrudRepository<LdapUser, Name> {
+//public interface LdapUserRepository extends CrudRepository<LdapUser, Long> {
 public interface LdapUserRepository extends LdapRepository<LdapUser> {
-	LdapUser findByUsername(String username);
-    LdapUser findByUsernameAndPassword(String username, String password);
-    List <LdapUser> findByUsernameLikeIgnoreCase(String username);
+	
+    LdapUser findByUidAndSn(String username, String password);
+    List <LdapUser> findByUidLikeIgnoreCase(String username);
     List<LdapUser> findAll();
+	LdapUser findByUid(String user);
+	LdapUser findByUidAndPassword(String user, String hashpw);
 }

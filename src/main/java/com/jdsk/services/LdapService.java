@@ -13,5 +13,6 @@ public interface LdapService {
 	public LdapUser search(String username);
 	public List	<LdapUser> getAll();
 	ResponseEntity<DefaultResponse<LdapUser>> create(LdapUser ldapUser, BindingResult bindingResult);
+	ResponseEntity<DefaultResponse<Boolean>> authenticate(String user, String pass);
 
 }

@@ -19,6 +19,7 @@ public class LdapConfig {
 	    LdapContextSource contextSource = new LdapContextSource();
 	    contextSource.setUrl("ldap://localhost:10389");
 	    contextSource.setBase("ou=people,dc=example,dc=com");
+	    contextSource.setBase("dc=example,dc=com");
 	    contextSource.setUserDn("uid=admin,ou=system");
 	    contextSource.setPassword("secret");
 	    return contextSource;

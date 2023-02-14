@@ -36,4 +36,9 @@ public class UserController {
 	  public LdapUser index(@PathVariable String userName) {
 	    return ldapService.search(userName);
 	  }
+	  @GetMapping("/users/auth/{userName}/{password}")
+	  public ResponseEntity<DefaultResponse<Boolean>> auth(@PathVariable String userName, @PathVariable String password) {
+	    return ldapService.authenticate(userName,password);
+	  }
+	  
 }
